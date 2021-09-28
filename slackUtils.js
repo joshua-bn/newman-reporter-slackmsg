@@ -150,8 +150,8 @@ function getSkipCount(executions) {
         if (execution.assertions) {
             if (execution.assertions[0].skipped) {
                 acc = acc + 1;
-            };
-        };
+            }
+        }
         return acc;
     }, 0);
 }
@@ -194,7 +194,7 @@ function failMessage(parsedFailures) {
     return parsedFailures.map((failure) => {
         return `
         {
-            "title": "${failure.name}",
+            "title": "${cleanErrorMessage(failure.name)}",
             "short": false
         },
         ${failErrors(failure.tests)}`;
@@ -206,7 +206,7 @@ function failErrors(parsedErrors) {
     return parsedErrors.map((error, index) => {
         return `
         {
-            "value": "*\`${index + 1}. ${error.name} - ${error.test}\`*",
+            "value": "*\`${index + 1}. ${cleanErrorMessage(error.name)} - ${cleanErrorMessage(error.test)}\`*",
             "short": false
         },
         {
